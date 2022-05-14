@@ -52,3 +52,18 @@ func TestSeveralDiscounts(t *testing.T) {
 		t.Errorf("價格錯誤: %f", value)
 	}
 }
+
+func TestEdgeCases(t *testing.T) {
+	if value := price([]int{0, 0, 1, 1, 2, 2, 3, 4}); value != 2*(8*4*0.8) {
+		t.Errorf("價格錯誤: %f", value)
+	}
+	if value := price([]int{
+		0, 0, 0, 0, 0,
+		1, 1, 1, 1, 1,
+		2, 2, 2, 2,
+		3, 3, 3, 3, 3,
+		4, 4, 4, 4,
+	}); value != 3*(8*5*0.75)+2*(8*4*0.8) {
+		t.Errorf("價格錯誤: %f", value)
+	}
+}
