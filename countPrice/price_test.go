@@ -38,22 +38,34 @@ func TestPriceDiscounts(t *testing.T) {
 	}
 }
 
-func TestSeveralDiscounts(t *testing.T) {
+func TestSeveralDiscounts1(t *testing.T) {
 	if value := price([]int{0, 0, 1}); value != 8+(8*2*0.95) {
 		t.Errorf("價格錯誤: %f，正確應為%f元", value, 8+(8*2*0.95))
 	}
+}
+func TestSeveralDiscounts2(t *testing.T) {
 	if value := price([]int{0, 0, 1, 1}); value != 2*(8*2*0.95) {
 		t.Errorf("價格錯誤: %f，正確應為%f元", value, 2*(8*2*0.95))
 	}
+}
+func TestSeveralDiscounts3(t *testing.T) {
 	if value := price([]int{0, 0, 1, 2, 2, 3}); value != (8*4*0.8)+(8*2*0.95) {
 		t.Errorf("價格錯誤: %f，正確應為%f元", value, (8*4*0.8)+(8*2*0.95))
 	}
+}
+func TestSeveralDiscounts4(t *testing.T) {
 	if value := price([]int{0, 1, 1, 2, 3, 4}); value != 8+(8*5*0.75) {
 		t.Errorf("價格錯誤: %f，正確應為%f元", value, 8+(8*5*0.75))
 	}
 }
 
 func TestEdgeCases1(t *testing.T) {
+	if value := price([]int{0, 0, 1, 1, 2, 2, 3, 4}); value != 2*(8*4*0.8) {
+		t.Errorf("價格錯誤: %f，正確應為%f元", value, 2*(8*4*0.8))
+	}
+}
+
+func TestEdgeCases2(t *testing.T) {
 	if value := price([]int{
 		0, 0, 0, 0, 0,
 		1, 1, 1, 1, 1,
@@ -62,12 +74,6 @@ func TestEdgeCases1(t *testing.T) {
 		4, 4, 4, 4,
 	}); value != 3*(8*5*0.75)+2*(8*4*0.8) {
 		t.Errorf("價格錯誤: %f，正確應為%f元", value, 3*(8*5*0.75)+2*(8*4*0.8))
-	}
-
-}
-func TestEdgeCases2(t *testing.T) {
-	if value := price([]int{0, 0, 1, 1, 2, 2, 3, 4}); value != 2*(8*4*0.8) {
-		t.Errorf("價格錯誤: %f，正確應為%f元", value, 2*(8*4*0.8))
 	}
 
 }
