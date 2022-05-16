@@ -1,10 +1,13 @@
 package countPrice
 
-import "strconv"
+import (
+	"strconv"
+)
 
 var store = make(map[string]float64)
 
-func price(cart []int) float64 {
+func Price(cart []int) float64 {
+
 	if len(cart) == 0 {
 		return 0.0
 	}
